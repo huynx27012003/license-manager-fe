@@ -10,7 +10,7 @@ interface VerifyProps {
 }
 
 /**
- * Checks user token validity with the AtLicense API.
+ * Checks user token validity with the AT-License API.
  * If the response returns a 401, the token is invalid, otherwise it's still valid.
  */
 export async function verify({

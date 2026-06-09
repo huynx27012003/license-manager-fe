@@ -144,15 +144,15 @@ export const UserRoleDescriptions: Readonly<Record<UserRole, string>> = {
   [UserRole.User]:
     "A normal user of one or more of your products. Depending on account settings, they can have permission to manage their own resources, e.g. licenses and machines. They cannot manage other users' resources.",
   [UserRole.SupportAgent]:
-    "An internal administrative user of your AtLicense account, with a limited subset of permissions. Support Agents can read most resource data, but cannot create, update or delete resources.",
+    "An internal administrative user of your AT-License account, with a limited subset of permissions. Support Agents can read most resource data, but cannot create, update or delete resources.",
   [UserRole.SalesAgent]:
-    "An internal administrative user of your AtLicense account, with a limited subset of permissions. Sales Agents can read most resource data, but can only create, update and delete specific resources.",
+    "An internal administrative user of your AT-License account, with a limited subset of permissions. Sales Agents can read most resource data, but can only create, update and delete specific resources.",
   [UserRole.Developer]:
-    "An internal administrative user of your AtLicense account, with permission to manage all resources, but they cannot manage account billing.",
+    "An internal administrative user of your AT-License account, with permission to manage all resources, but they cannot manage account billing.",
   [UserRole.ReadOnly]:
-    "An internal administrative user of your AtLicense account, with permission to read all resources, except for account billing.",
+    "An internal administrative user of your AT-License account, with permission to read all resources, except for account billing.",
   [UserRole.Admin]:
-    "An internal administrative user of your AtLicense account, with permission to manage the entire account.",
+    "An internal administrative user of your AT-License account, with permission to manage the entire account.",
 } as const
 
 export const ExternalRoles: UserRole[] = [UserRole.User]

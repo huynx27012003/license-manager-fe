@@ -28,7 +28,7 @@ export default function SSOError() {
           >
             reach out
           </a>{" "}
-          to connect with a AtLicense engineer.
+          to connect with an AT-License engineer.
         </p>
       </div>
       <div className="flex w-full justify-end border-t border-accent p-4">

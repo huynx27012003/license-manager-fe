@@ -30,7 +30,7 @@ const STATE_CONTENT: Partial<Record<BillingState, StateContent>> = {
     description: (end) =>
       end
         ? `Your trial ends on ${formatDate(new Date(end), DATE_FORMAT)}. Upgrade to keep full access.`
-        : "Upgrade today to enjoy the full set of features from AtLicense.",
+        : "Upgrade today to enjoy the full set of features from AT-License.",
     ctaLabel: "Upgrade",
   },
   [BillingState.Paused]: {

@@ -39,12 +39,12 @@ import {
 
 import {
   type LucideIcon,
-  Home,
+  // Home,
   Key,
-  Package,
-  Zap,
-  Webhook,
-  KeyRound,
+  // Package,
+  // Zap,
+  // Webhook,
+  // KeyRound,
   Settings,
   User,
 } from "lucide-react"
@@ -90,18 +90,18 @@ type View = {
 }
 
 const VIEWS: View[] = [
-  {
-    id: ViewId.Home,
-    label: "Home",
-    icon: Home,
-    routes: linkOptions([
-      {
-        to: "/$accountId/app/dashboard",
-        label: "Metrics",
-        params: { accountId: atLicense.config.id },
-      },
-    ]),
-  },
+  // {
+  //   id: ViewId.Home,
+  //   label: "Home",
+  //   icon: Home,
+  //   routes: linkOptions([
+  //     {
+  //       to: "/$accountId/app/dashboard",
+  //       label: "Metrics",
+  //       params: { accountId: atLicense.config.id },
+  //     },
+  //   ]),
+  // },
   {
     id: ViewId.Licensing,
     label: "Licensing",
@@ -163,58 +163,58 @@ const VIEWS: View[] = [
       },
     ]),
   },
-  {
-    id: ViewId.Distribution,
-    label: "Distribution",
-    icon: Package,
-    routes: linkOptions([
-      {
-        to: "/$accountId/app/packages",
-        label: "Packages",
-        params: { accountId: atLicense.config.id },
-        requires: ["package.read"],
-      },
-      {
-        to: "/$accountId/app/releases",
-        label: "Releases",
-        params: { accountId: atLicense.config.id },
-        requires: ["release.read"],
-      },
-      {
-        to: "/$accountId/app/artifacts",
-        label: "Artifacts",
-        params: { accountId: atLicense.config.id },
-        requires: ["artifact.read"],
-      },
-      {
-        to: "/$accountId/app/platforms",
-        label: "Platforms",
-        params: { accountId: atLicense.config.id },
-        requires: ["platform.read"],
-      },
-      {
-        to: "/$accountId/app/arches",
-        label: "Architectures",
-        params: { accountId: atLicense.config.id },
-        requires: ["arch.read"],
-      },
-      {
-        to: "/$accountId/app/channels",
-        label: "Channels",
-        params: { accountId: atLicense.config.id },
-        requires: ["channel.read"],
-      },
-      {
-        to: "/$accountId/app/engines",
-        label: "Engines",
-        params: { accountId: atLicense.config.id },
-        requires: ["engine.read"],
-      },
-    ]),
-  },
-  { id: ViewId.Automate, label: "Automate", icon: Zap, routes: [] },
-  { id: ViewId.Webhooks, label: "Webhooks", icon: Webhook, routes: [] },
-  { id: ViewId.Access, label: "Access", icon: KeyRound, routes: [] },
+  // {
+  //   id: ViewId.Distribution,
+  //   label: "Distribution",
+  //   icon: Package,
+  //   routes: linkOptions([
+  //     {
+  //       to: "/$accountId/app/packages",
+  //       label: "Packages",
+  //       params: { accountId: atLicense.config.id },
+  //       requires: ["package.read"],
+  //     },
+  //     {
+  //       to: "/$accountId/app/releases",
+  //       label: "Releases",
+  //       params: { accountId: atLicense.config.id },
+  //       requires: ["release.read"],
+  //     },
+  //     {
+  //       to: "/$accountId/app/artifacts",
+  //       label: "Artifacts",
+  //       params: { accountId: atLicense.config.id },
+  //       requires: ["artifact.read"],
+  //     },
+  //     {
+  //       to: "/$accountId/app/platforms",
+  //       label: "Platforms",
+  //       params: { accountId: atLicense.config.id },
+  //       requires: ["platform.read"],
+  //     },
+  //     {
+  //       to: "/$accountId/app/arches",
+  //       label: "Architectures",
+  //       params: { accountId: atLicense.config.id },
+  //       requires: ["arch.read"],
+  //     },
+  //     {
+  //       to: "/$accountId/app/channels",
+  //       label: "Channels",
+  //       params: { accountId: atLicense.config.id },
+  //       requires: ["channel.read"],
+  //     },
+  //     {
+  //       to: "/$accountId/app/engines",
+  //       label: "Engines",
+  //       params: { accountId: atLicense.config.id },
+  //       requires: ["engine.read"],
+  //     },
+  //   ]),
+  // },
+  // { id: ViewId.Automate, label: "Automate", icon: Zap, routes: [] },
+  // { id: ViewId.Webhooks, label: "Webhooks", icon: Webhook, routes: [] },
+  // { id: ViewId.Access, label: "Access", icon: KeyRound, routes: [] },
   {
     id: ViewId.Settings,
     label: "Settings",
@@ -271,7 +271,7 @@ function useActiveView(): View {
     }
   }
 
-  return VIEWS.find((view) => view.id === ViewId.Home)!
+  return VIEWS[0]
 }
 
 function useVisibleViews(): View[] {
@@ -286,8 +286,8 @@ function useVisibleViews(): View[] {
   }))
 
   return filtered.filter((view) => {
-    if (view.id === ViewId.Home) return true
-    const original = VIEWS.find((v) => v.id === view.id)!
+    const original = VIEWS.find((v) => v.id === view.id)
+    if (!original) return false
     if (original.routes.length === 0) return true
     return view.routes.length > 0
   })
@@ -339,8 +339,8 @@ export default function SidebarPanel(): React.ReactElement {
       >
         <RailHeader className="flex flex-col items-center justify-center space-y-4 pt-6 pb-0">
           <img
-            src="/logomark.svg"
-            alt="AtLicense Logomark"
+            src="/favicon.png"
+            alt="AT-License Logomark"
             className="h-5 md:h-4"
           />
           <div

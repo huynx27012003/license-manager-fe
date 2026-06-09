@@ -21,17 +21,14 @@ import * as Loading from "@/components/loading"
 const registerSchema = z.object({
   username: z.string().email("Please enter a valid email."),
   password: z.string().min(8, "Password must be at least 8 characters."),
-  companyId: z.string().optional(),
 })
 
 export default function Register() {
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
-  const [showIdField, setShowIdField] = useState(false)
-
   const registerForm = useForm<z.infer<typeof registerSchema>>({
     resolver: zodResolver(registerSchema),
-    defaultValues: { username: "", password: "", companyId: "" },
+    defaultValues: { username: "", password: "" },
   })
 
   // TODO(cazden) API call to check if email is available
@@ -55,28 +52,7 @@ export default function Register() {
         return
       }
 
-      // Extract domain and slug from email
-      const parts = values.username.split("@")
-      const segments = parts[1].split(".")
-      const domain = segments.slice(0, 2).join("-").toLowerCase()
-      const slug = segments[0].toLowerCase()
-
-      // Dummy domain check
-      if (domain === "umbral-tech" && !values.companyId) {
-        setShowIdField(true)
-        registerForm.setError("companyId", {
-          type: "manual",
-          message: "Company ID already exists for this domain",
-        })
-        return
-      }
-
       // TODO(cazden) Handle account creation
-      console.log(
-        `Creating account for ${values.username} with slug: ${slug}${
-          values.companyId ? ` and companyId: ${values.companyId}` : ""
-        }`,
-      )
 
       void navigate({
         to: "/$accountId/app/dashboard",
@@ -103,7 +79,7 @@ export default function Register() {
               Create an account
             </h1>
             <h2 className="text-sm text-content-muted">
-              You're one step away from joining AtLicense.
+              You're one step away from joining AT-License.
             </h2>
           </div>
           <FormField
@@ -128,28 +104,6 @@ export default function Register() {
               </FormItem>
             )}
           />
-          {showIdField && (
-            <FormField
-              control={registerForm.control}
-              name="companyId"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-content-muted">
-                    Company ID
-                  </FormLabel>
-                  <FormControl>
-                    <Input
-                      type="text"
-                      placeholder="Enter company ID..."
-                      disabled={loading}
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          )}
           <FormField
             control={registerForm.control}
             name="password"

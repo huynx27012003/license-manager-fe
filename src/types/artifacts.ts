@@ -84,9 +84,9 @@ export const ArtifactFormFieldDescriptions: Readonly<
   platform: "The platform of the artifact, e.g. darwin.",
   arch: "The architecture of the artifact, e.g. amd64.",
   signature:
-    "This can be an arbitrary string, utilized outside of AtLicense for verification purposes. For example, AtLicense's CLI uses Ed25519ph signatures, base64 encoded without padding.",
+    "This can be an arbitrary string, utilized outside of AT-License for verification purposes. For example, AT-License's CLI uses Ed25519ph signatures, base64 encoded without padding.",
   checksum:
-    "This can be an arbitrary string, utilized outside of AtLicense for verification purposes. For example, AtLicense's CLI uses SHA-512 checksums, base64 encoded without padding.",
+    "This can be an arbitrary string, utilized outside of AT-License for verification purposes. For example, AT-License's CLI uses SHA-512 checksums, base64 encoded without padding.",
   metadata:
     "This can be used to store things such as additional checksums, e.g. SHA-256 and SHA-512 for integrity checks, for engine-specific requirements e.g. requiresPython, or for notes.",
   releaseId: "The release this artifact belongs to.",

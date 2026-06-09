@@ -1,4 +1,4 @@
 <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-  <rect width="20" height="20" rx="4" fill="#00ff92"/>
-  <text x="10" y="15" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#000811" text-anchor="middle">A</text>
+  <circle cx="10" cy="10" r="9" fill="#00b368"/>
+  <text x="10" y="14" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="white" text-anchor="middle">A</text>
 </svg>

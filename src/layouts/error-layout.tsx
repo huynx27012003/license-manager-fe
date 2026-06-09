@@ -11,7 +11,7 @@ export default function ErrorLayout() {
           <BackButton className="hidden md:flex" />
         </div>
         <div className="justify-self-center">
-          <img src={logo} alt="AtLicense Logo" className="h-6 md:h-5" />
+          <img src={logo} alt="AT-License Logo" className="h-6 md:h-5" />
         </div>
       </nav>
       <main className="flex flex-1 items-center justify-center px-4">

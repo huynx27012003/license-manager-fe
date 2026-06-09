@@ -9,16 +9,82 @@
   --font-owners-wide: "Owners Wide", sans-serif;
   --font-owners-text: "Owners Text", sans-serif;
 
-  /* Primary/Secondary/Accent/Destructive */
-  --color-brand-primary: #77fa98;
-  --color-brand-secondary: #77e2fc;
-  --color-brand-secondary-light: #a5edff;
-  --color-brand-secondary-dark: #192f34;
-  --color-brand-accent: #282e33;
-  --color-brand-amber: #ffac30;
-  --color-brand-destructive: #f45278;
+  /* Brand Colors (Light theme defaults) */
+  --color-brand-primary: #2563eb;
+  --color-brand-secondary: #0891b2;
+  --color-brand-secondary-light: #67e8f9;
+  --color-brand-secondary-dark: #164e63;
+  --color-brand-accent: #e5e7eb;
+  --color-brand-amber: #d97706;
+  --color-brand-destructive: #dc2626;
 
   /* Backgrounds */
+  --color-brand-background-main: #ffffff;
+  --color-brand-background-1: #f3f4f6;
+  --color-brand-background-2: #e5e7eb;
+  --color-brand-background-3: #d1d5db;
+  --color-brand-background-4: #9ca3af;
+  --color-brand-background-5: #6b7280;
+
+  /* Borders */
+  --color-brand-border-main: #d1d5db;
+  --color-brand-border-1: #e5e7eb;
+  --color-brand-border-2: #9ca3af;
+  --color-brand-border-3: #6b7280;
+  --color-brand-border-4: #4b5563;
+
+  /* Neutrals */
+  --color-brand-neutral-0: #ffffff;
+  --color-brand-neutral-25: #f9fafb;
+  --color-brand-neutral-50: #f3f4f6;
+  --color-brand-neutral-100: #e5e7eb;
+  --color-brand-neutral-200: #d1d5db;
+  --color-brand-neutral-300: #9ca3af;
+  --color-brand-neutral-400: #6b7280;
+  --color-brand-neutral-500: #4b5563;
+  --color-brand-neutral-600: #374151;
+  --color-brand-neutral-700: #1f2937;
+  --color-brand-neutral-800: #111827;
+  --color-brand-neutral-900: #030712;
+
+  /* Content Colors */
+  --color-content-disabled: #9ca3af;
+  --color-content-subdued: #6b7280;
+  --color-content-normal: #4b5563;
+  --color-content-muted: #374151;
+  --color-content-loud: #111827;
+
+  /* Button Colors */
+  --color-button-primary: #2563eb;
+  --color-button-primary-hover: #1d4ed8;
+  --color-button-secondary: #ffffff;
+  --color-button-secondary-hover: #f3f4f6;
+  --color-button-destructive: #dc2626;
+
+  /* Toast Colors */
+  --color-toast: #ffffff;
+  --color-toast-success: #059669;
+  --color-toast-error: #dc2626;
+  --color-toast-warning: #d97706;
+  --color-toast-info: #6366f1;
+
+  /* Breakpoints */
+  --breakpoint-md: 60rem;
+
+  /* Base Radius */
+  --radius: 0.625rem;
+}
+
+/* Dark Theme Overrides */
+.dark {
+  --color-brand-primary: #3b82f6;
+  --color-brand-secondary: #06b6d4;
+  --color-brand-secondary-light: #67e8f9;
+  --color-brand-secondary-dark: #164e63;
+  --color-brand-accent: #282e33;
+  --color-brand-amber: #f59e0b;
+  --color-brand-destructive: #ef4444;
+
   --color-brand-background-main: #030a11;
   --color-brand-background-1: #0f1419;
   --color-brand-background-2: #1d2125;
@@ -26,14 +92,12 @@
   --color-brand-background-4: #33383e;
   --color-brand-background-5: #3b4148;
 
-  /* Borders */
   --color-brand-border-main: #242a32;
   --color-brand-border-1: #2f3439;
   --color-brand-border-2: #414e5d;
   --color-brand-border-3: #596676;
   --color-brand-border-4: #727f8e;
 
-  /* Neutrals */
   --color-brand-neutral-0: #f8fafb;
   --color-brand-neutral-25: #f6f8fa;
   --color-brand-neutral-50: #eceff3;
@@ -47,32 +111,23 @@
   --color-brand-neutral-800: #1a1b25;
   --color-brand-neutral-900: #0d0d12;
 
-  /* Content Colors */
   --color-content-disabled: #50575f;
   --color-content-subdued: #7b8591;
   --color-content-normal: #8f9ba9;
   --color-content-muted: #cbcbcd;
   --color-content-loud: #ffffff;
 
-  /* Button Colors */
-  --color-button-primary: #77fa98;
-  --color-button-primary-hover: #5ff07d;
+  --color-button-primary: #3b82f6;
+  --color-button-primary-hover: #2563eb;
   --color-button-secondary: #0d0d12;
   --color-button-secondary-hover: #ffffff;
-  --color-button-destructive: #df1c41;
+  --color-button-destructive: #dc2626;
 
-  /* Toast Colors */
   --color-toast: #0d0d12;
-  --color-toast-success: #40c4aa;
-  --color-toast-error: #df1c41;
-  --color-toast-warning: #ffcd4c;
-  --color-toast-info: #5f57ff;
-
-  /* Breakpoints */
-  --breakpoint-md: 60rem;
-
-  /* Base Radius */
-  --radius: 0.625rem;
+  --color-toast-success: #10b981;
+  --color-toast-error: #ef4444;
+  --color-toast-warning: #f59e0b;
+  --color-toast-info: #6366f1;
 }
 
 /* Component Styles */
@@ -102,11 +157,11 @@
 
   /* Primary/Secondary/Accent/Destructive */
   --color-primary: var(--color-brand-primary);
-  --color-primary-foreground: var(--color-brand-neutral-900);
+  --color-primary-foreground: #ffffff;
 
   --color-secondary: var(--color-brand-secondary);
   --color-secondary-light: var(--color-brand-secondary-light);
-  --color-secondary-foreground: var(--color-content-loud);
+  --color-secondary-foreground: #ffffff;
 
   --color-muted: var(--color-content-subdued);
   --color-muted-foreground: var(--color-content-normal);
@@ -132,7 +187,7 @@
   --color-sidebar: var(--color-brand-background);
   --color-sidebar-foreground: var(--color-content-subdued);
   --color-sidebar-primary: var(--color-brand-primary);
-  --color-sidebar-primary-foreground: var(--color-brand-neutral-900);
+  --color-sidebar-primary-foreground: #ffffff;
   --color-sidebar-accent: var(--color-background-2);
   --color-sidebar-accent-foreground: var(--color-content-loud);
   --color-sidebar-border: var(--color-brand-border-2);

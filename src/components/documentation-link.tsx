@@ -25,7 +25,7 @@ export default function DocumentationLink({
         className,
       )}
     >
-      {message || `To learn more about ${page || "AtLicense"}, see the `}
+      {message || `To learn more about ${page || "AT-License"}, see the `}
       <Button asChild variant="link" size="link">
         <a
           href={`https://atLicense.sh/docs/api/${page && `${page}/`}${page && section && `#${section}/`}`}

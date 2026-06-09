@@ -40,9 +40,9 @@ export const AccountAttributeDescriptions: Readonly<
   Record<keyof Writable<AccountAttributes>, string>
 > = {
   name: "The name of the account.",
-  slug: "We recommend that you use your account ID instead of your account slug when integrating AtLicense within your product.",
+  slug: "We recommend that you use your account ID instead of your account slug when integrating AT-License within your product.",
   apiVersion:
-    "Your account's pinned API version. Before changing this, we recommend testing against the new API version via the AtLicense-Version header first.",
+    "Your account's pinned API version. Before changing this, we recommend testing against the new API version via the AT-License-Version header first.",
   status: "The current status of the account.",
   protected:
     "When an account is protected, only admins can create user, license and machine resources.",
