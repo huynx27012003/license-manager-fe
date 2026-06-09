@@ -24,14 +24,7 @@ export default function GenericError() {
           </p>
         )}
         <p className="text-xs text-content-subdued">
-          If this error is unexpected, and the problem persists, please{" "}
-          <a
-            href="mailto:support@atLicense.sh"
-            className="text-secondary underline transition-colors duration-200 hover:text-content-loud"
-          >
-            reach out
-          </a>{" "}
-          to connect with an AT-License engineer.
+          If this error is unexpected, and the problem persists, please reach out to an AT-License engineer.
         </p>
       </div>
       <div className="flex w-full justify-end border-t border-accent p-4">

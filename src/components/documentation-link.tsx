@@ -1,5 +1,3 @@
-import { Button } from "@/components/ui/button"
-
 import { cn } from "@/lib/utils"
 import { ResourceType } from "@/types/api"
 
@@ -13,10 +11,8 @@ interface DocumentationLinkProps {
 
 export default function DocumentationLink({
   page = "",
-  section = "",
   message = "",
   className,
-  children,
 }: DocumentationLinkProps): React.ReactElement {
   return (
     <p
@@ -25,17 +21,7 @@ export default function DocumentationLink({
         className,
       )}
     >
-      {message || `To learn more about ${page || "AT-License"}, see the `}
-      <Button asChild variant="link" size="link">
-        <a
-          href={`https://atLicense.sh/docs/api/${page && `${page}/`}${page && section && `#${section}/`}`}
-          target="_blank"
-          rel="noreferrer"
-        >
-          {children || "documentation"}
-        </a>
-      </Button>
-      {!message && " for more information."}
+      {message || `To learn more about ${page || "AT-License"}, see the documentation.`}
     </p>
   )
 }

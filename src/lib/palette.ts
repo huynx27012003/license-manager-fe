@@ -2,7 +2,6 @@ import {
   Box,
   Cpu,
   Key,
-  Code,
   User,
   UserX,
   Clock,
@@ -12,8 +11,6 @@ import {
   Archive,
   Package,
   UserCog,
-  BookOpen,
-  LifeBuoy,
   FileText,
   PowerOff,
   UserPlus,
@@ -55,10 +52,6 @@ import { HeartbeatStatus } from "@/types/machines"
 import { type SearchOperator, type SearchQuery } from "@/types/search"
 
 import { resourceConfigs, MIN_SEARCH_LENGTH } from "@/lib/search"
-
-const DOCS_URL = "https://atLicense.sh/docs"
-const API_URL = "https://atLicense.sh/docs/api"
-const SUPPORT_EMAIL = "support@atLicense.sh"
 
 export const RESOURCE_LABEL: Record<FilterableResource, string> = {
   licenses: "Licenses",
@@ -293,36 +286,6 @@ export function buildCommands(opts: { isCloud: boolean }): Command[] {
       keywords: ["team", "members"],
       kind: "navigate",
       to: "/$accountId/app/team",
-    },
-  )
-
-  all.push(
-    {
-      id: "help:docs",
-      label: "Documentation",
-      icon: BookOpen,
-      group: "help",
-      keywords: ["docs", "documentation", "help"],
-      kind: "external",
-      url: DOCS_URL,
-    },
-    {
-      id: "help:api",
-      label: "API reference",
-      icon: Code,
-      group: "help",
-      keywords: ["api", "reference", "developer"],
-      kind: "external",
-      url: API_URL,
-    },
-    {
-      id: "help:support",
-      label: "Get support",
-      icon: LifeBuoy,
-      group: "help",
-      keywords: ["support", "help", "contact", "email"],
-      kind: "mailto",
-      email: SUPPORT_EMAIL,
     },
   )
 
