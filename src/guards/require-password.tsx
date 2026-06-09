@@ -1,0 +1,23 @@
+import { Navigate } from "@tanstack/react-router"
+import { useAuth } from "@/hooks/use-auth"
+
+import * as atLicense from "@/atLicense"
+
+export default function RequirePassword({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  const auth = useAuth()
+
+  if (!auth.password) {
+    console.warn("No password stored in context. Redirecting to password.")
+
+    return Navigate({
+      to: "/$accountId/auth/password",
+      params: { accountId: atLicense.config.id },
+    })
+  }
+
+  return <>{children}</>
+}

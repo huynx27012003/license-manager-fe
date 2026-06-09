@@ -1,0 +1,96 @@
+import { useState, useMemo, useCallback } from "react"
+import { useQueryClient } from "@tanstack/react-query"
+
+import { EnvironmentContext } from "@/contexts/environment-context"
+import { useCreateEnvironmentToken } from "@/queries/tokens"
+
+import * as atLicense from "@/atLicense"
+import config from "@/atLicense/config"
+import { toast } from "@/lib/toast"
+
+function CeEnvironmentProvider({
+  children,
+}: {
+  children: React.ReactNode
+}): React.ReactElement {
+  const value = useMemo(() => ({ code: null, select: async () => {} }), [])
+  return (
+    <EnvironmentContext.Provider value={value}>
+      {children}
+    </EnvironmentContext.Provider>
+  )
+}
+
+function EeEnvironmentProvider({
+  children,
+}: {
+  children: React.ReactNode
+}): React.ReactElement {
+  const [code, setCode] = useState<string | null>(null)
+  const queryClient = useQueryClient()
+  const { mutateAsync: createEnvironmentToken } = useCreateEnvironmentToken()
+
+  const getEnvironmentToken = useCallback(
+    async (environmentId: string): Promise<string> => {
+      const cacheKey = ["token", "environment", environmentId]
+
+      const cached = queryClient.getQueryData<string>(cacheKey)
+      if (cached) return cached
+
+      const tokenResource = await createEnvironmentToken({
+        environmentId: environmentId,
+      })
+      return tokenResource.attributes.token!
+    },
+    [createEnvironmentToken, queryClient],
+  )
+
+  const select = useCallback(
+    async (environmentId: string | null, environmentCode: string | null) => {
+      const previousToken = atLicense.client["environmentToken"]
+      const previousEnvironment = atLicense.client["environment"]
+
+      try {
+        if (environmentCode == null) {
+          atLicense.client.setEnvironmentToken(null)
+          atLicense.client.setEnvironment(null)
+        } else {
+          const token = await getEnvironmentToken(environmentId!)
+
+          atLicense.client.setEnvironmentToken(token)
+          atLicense.client.setEnvironment(environmentCode)
+        }
+
+        setCode(environmentCode)
+        await queryClient.invalidateQueries({
+          predicate: (q) => q.queryKey[0] !== "environments",
+        })
+      } catch (error) {
+        toast({ message: "Unauthorized", variant: "error" })
+        atLicense.client.setEnvironmentToken(previousToken ?? null)
+        atLicense.client.setEnvironment(previousEnvironment ?? null)
+        throw error
+      }
+    },
+    [getEnvironmentToken, queryClient],
+  )
+
+  const value = useMemo(() => ({ code, select }), [code, select])
+
+  return (
+    <EnvironmentContext.Provider value={value}>
+      {children}
+    </EnvironmentContext.Provider>
+  )
+}
+
+export function EnvironmentProvider({
+  children,
+}: {
+  children: React.ReactNode
+}): React.ReactElement {
+  if (config.isCE) {
+    return <CeEnvironmentProvider>{children}</CeEnvironmentProvider>
+  }
+  return <EeEnvironmentProvider>{children}</EeEnvironmentProvider>
+}

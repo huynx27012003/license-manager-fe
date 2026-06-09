@@ -1,0 +1,32 @@
+import config from "@/atLicense/config"
+import client from "@/atLicense/client"
+
+import { GroupResponse } from "@/types/groups"
+
+import * as Schemas from "@/schemas"
+
+config.validate()
+
+interface UpdateProps {
+  id: string
+  values: Schemas.Groups.UpdateValues
+}
+
+export default async function update({
+  id,
+  values,
+}: UpdateProps): Promise<GroupResponse> {
+  const body = {
+    data: {
+      type: "groups",
+      attributes: values,
+    },
+  }
+
+  const result = (await client.request(`/accounts/${config.id}/groups/${id}`, {
+    method: "PATCH",
+    body: JSON.stringify(body),
+  })) as GroupResponse
+
+  return result
+}

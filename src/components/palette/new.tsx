@@ -1,0 +1,28 @@
+import { CommandGroup } from "@/components/ui/command"
+
+import type { Command } from "@/types/palette"
+
+import CommandRow from "./command-row"
+
+export interface NewProps {
+  commands: Command[]
+  selectedValue: string
+  onSelect: (command: Command) => void
+}
+
+export default function New({ commands, selectedValue, onSelect }: NewProps) {
+  return (
+    <>
+      <CommandGroup heading="New">
+        {commands.map((command) => (
+          <CommandRow
+            key={command.id}
+            command={command}
+            selectedValue={selectedValue}
+            onSelect={() => onSelect(command)}
+          />
+        ))}
+      </CommandGroup>
+    </>
+  )
+}

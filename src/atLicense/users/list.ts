@@ -1,0 +1,60 @@
+import config from "@/atLicense/config"
+import client from "@/atLicense/client"
+import { UserListResponse, AllRoles, type UserFilters } from "@/types/users"
+
+config.validate()
+
+interface ListProps {
+  limit?: number
+  pageNumber?: number
+  pageSize?: number
+  filters?: UserFilters
+}
+
+export default async function list({
+  limit,
+  pageNumber,
+  pageSize,
+  filters,
+}: ListProps): Promise<UserListResponse> {
+  const params = new URLSearchParams()
+  if (limit != null) {
+    params.set("limit", limit.toString())
+  }
+  if (pageNumber != null) {
+    params.set("page[number]", pageNumber.toString())
+  }
+  if (pageSize != null) {
+    params.set("page[size]", pageSize.toString())
+  }
+  if (filters?.status) {
+    params.set("status", filters.status)
+  }
+  if (filters?.assigned != null) {
+    params.set("assigned", filters.assigned.toString())
+  }
+  if (filters?.product) {
+    params.set("product", filters.product)
+  }
+  if (filters?.group) {
+    params.set("group", filters.group)
+  }
+
+  const roles = filters?.roles ?? AllRoles
+  roles.forEach((role) => params.append("roles[]", role))
+
+  if (filters?.metadata) {
+    for (const [key, value] of Object.entries(filters.metadata)) {
+      params.set(`metadata[${key}]`, value)
+    }
+  }
+
+  const result = (await client.request(
+    `/accounts/${config.id}/users?${params.toString()}`,
+    {
+      method: "GET",
+    },
+  )) as UserListResponse
+
+  return result
+}

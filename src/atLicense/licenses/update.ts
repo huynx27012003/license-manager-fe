@@ -1,0 +1,40 @@
+import config from "@/atLicense/config"
+import client from "@/atLicense/client"
+
+import { LicenseResponse } from "@/types/licenses"
+
+import * as Schemas from "@/schemas"
+
+config.validate()
+
+interface UpdateProps {
+  id: string
+  values: Schemas.Licenses.UpdateValues
+}
+
+export default async function update({
+  id,
+  values,
+}: UpdateProps): Promise<LicenseResponse> {
+  const { ownerId, entitlements, users, ...attributes } = values
+  void ownerId
+  void entitlements
+  void users
+
+  const body = {
+    data: {
+      type: "licenses",
+      attributes,
+    },
+  }
+
+  const result = (await client.request(
+    `/accounts/${config.id}/licenses/${id}`,
+    {
+      method: "PATCH",
+      body: JSON.stringify(body),
+    },
+  )) as LicenseResponse
+
+  return result
+}
