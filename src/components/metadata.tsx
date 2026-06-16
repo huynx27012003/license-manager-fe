@@ -25,7 +25,7 @@ export default function Metadata({
     <div className={cn("p-4", className)}>
       {resource.attributes.metadata &&
       Object.keys(resource.attributes.metadata).length > 0 ? (
-        <div className="relative">
+        <div className="relative min-w-0">
           <Button
             variant="ghost"
             size="icon"
@@ -39,11 +39,8 @@ export default function Metadata({
             <Copy className="size-3.5" />
           </Button>
 
-          <ScrollArea
-            className="max-h-64 rounded border border-accent"
-            orientation="both"
-          >
-            <pre className="w-max min-w-full p-3 font-mono text-sm leading-snug whitespace-pre">
+          <ScrollArea className="max-h-64 max-w-full rounded border border-accent">
+            <pre className="max-w-full p-3 font-mono text-sm leading-snug whitespace-pre-wrap break-words">
               {JSON.stringify(resource.attributes.metadata, null, 2)}
             </pre>
           </ScrollArea>

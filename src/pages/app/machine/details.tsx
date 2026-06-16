@@ -248,7 +248,7 @@ export default function MachineDetails() {
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
-            <div className="flex items-center space-x-2">
+            <div className="sticky right-4 z-10 flex shrink-0 items-center space-x-2 bg-background-1">
               {machine?.attributes.requireHeartbeat && (
                 <Can permission="machine.heartbeat.reset">
                   <Button

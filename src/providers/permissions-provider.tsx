@@ -25,7 +25,7 @@ export function PermissionsProvider({
     const raw = currentUser?.attributes.permissions
 
     let permissions: ReadonlySet<Permission>
-    if (raw != null) {
+    if (raw != null && raw.length > 0) {
       permissions = new Set(raw.filter(isPermission))
     } else if (config.isCE && currentUser?.attributes.role != null) {
       permissions = new Set(
