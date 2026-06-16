@@ -2,9 +2,13 @@ import { toast } from "@/lib/toast"
 
 export async function copyToClipboard(text: string) {
   try {
-    if (navigator.clipboard?.writeText && window.isSecureContext) {
-      await navigator.clipboard.writeText(text)
-    } else {
+    try {
+      if (navigator.clipboard?.writeText && window.isSecureContext) {
+        await navigator.clipboard.writeText(text)
+      } else {
+        fallbackCopy(text)
+      }
+    } catch {
       fallbackCopy(text)
     }
     toast({ message: "Copied to clipboard" })
@@ -23,8 +27,12 @@ function fallbackCopy(text: string) {
   textarea.value = text
   textarea.setAttribute("readonly", "")
   textarea.style.position = "fixed"
-  textarea.style.left = "-9999px"
+  textarea.style.left = "0"
   textarea.style.top = "0"
+  textarea.style.width = "1px"
+  textarea.style.height = "1px"
+  textarea.style.opacity = "0"
+  textarea.style.pointerEvents = "none"
   document.body.appendChild(textarea)
   textarea.focus()
   textarea.select()
